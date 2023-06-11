@@ -1,0 +1,21 @@
+version: '3.8'
+services:
+  server:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    working_dir: /app/server
+    container_name: tiger-shit-coffee-module
+    init: true
+    ports:
+      # App port
+      - 3000:3000
+    volumes:
+      # Delegated option for faster mounted volumes
+      - ./server:/app/server:delegated
+      # Because `npm install`
+      - ./server/package.json:/app/server/package.json
+      - ./server/package-lock.json:/app/server/package-lock.json
+      # Block local modules
+      - /app/server/node_modules
+      - /app/frontend/node_modules
