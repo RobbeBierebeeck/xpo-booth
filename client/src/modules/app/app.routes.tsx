@@ -7,6 +7,6 @@ export const router = createBrowserRouter([
 	{
 		path: APP_PATHS.root,
 		element: <App />,
-		children: [BOOTH_ROUTES],
+		children: [...BOOTH_ROUTES],
 	},
 ])

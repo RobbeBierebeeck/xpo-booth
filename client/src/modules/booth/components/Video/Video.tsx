@@ -1,38 +1,26 @@
 import { FC, useCallback, useRef } from 'react'
 import Webcam from 'react-webcam'
-export const Video: FC = () => {
-	const webcamRef = useRef(null)
+import { VideoProps } from './Video.types.ts'
+import { StyledButton, StyledWebcam } from './Video.styles.tsx'
+
+export const Video: FC<VideoProps> = ({ onTakePhoto }) => {
+	const webcamRef = useRef<Webcam>(null)
 
 	const capture = useCallback(() => {
 		if (!webcamRef.current) return
-
-		const imageSrc = webcamRef.current.getScreenshot()
-		console.log(imageSrc)
-		//convert imageSrc to base64
+		const imageSrc = webcamRef.current.getScreenshot() as string
 		const base64 = imageSrc.split(',')[1]
-		console.log(base64)
+		onTakePhoto(base64)
+	}, [webcamRef, onTakePhoto])
 
-		window.open(imageSrc)
-	}, [webcamRef])
 	return (
 		<>
-			<Webcam
+			<StyledWebcam
 				allowFullScreen={true}
 				screenshotFormat="image/jpeg"
 				ref={webcamRef}
-				style={{
-					width: '100%',
-					height: '100vh',
-					objectFit: 'cover',
-					position: 'fixed',
-					top: 0,
-					left: 0,
-					zIndex: -1,
-				}}
-				width="100%"
-				height="auto"
 			/>
-			<button onClick={capture}>capture</button>
+			<StyledButton onClick={capture}></StyledButton>
 		</>
 	)
 }
