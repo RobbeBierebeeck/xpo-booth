@@ -15,8 +15,8 @@ COPY ./server/package.json ./server/package-lock.json ./
 RUN npm install
 # Copy app
 COPY ./server ./
-# Run as non-root user
-USER node
+# Run as non-root user but with write permissions to the public folder
+RUN chown -R node:node /app/public && chmod -R 755 /app/public
 # Run app
 CMD node bin/www
 
