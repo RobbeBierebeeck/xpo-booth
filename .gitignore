@@ -1,6 +1,5 @@
 # compiled output
 server/dist
-server/public/images/*
 **/node_modules
 
 # Logs
