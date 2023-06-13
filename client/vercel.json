@@ -2,7 +2,7 @@
     "rewrites": [
         {
             "source": "/image/:path*",
-            "destination": "http://217.182.119.171:8083/image/:path*"
+            "destination": "http://xpo.ibs.sh/image/:path*"
         }
     ]
 }
