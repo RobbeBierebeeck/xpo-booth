@@ -6,6 +6,8 @@ services:
       dockerfile: Dockerfile.dev
     working_dir: /app/server
     container_name: xpo-booth-server
+    environment:
+      HOST: localhost:3000
     init: true
     ports:
       # App port

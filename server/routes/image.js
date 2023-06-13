@@ -3,6 +3,8 @@ const router = express.Router();
 const replaceColor = require("replace-color");
 const {writeFileSync} = require("fs");
 const Jimp = require("jimp");
+const { HOST } = process.env;
+
 
 router.get("/", (req, res) => {
     res.send("Hello World!");
@@ -26,7 +28,6 @@ router.post("/upload", async (req, res, next) => {
         writeFileSync(__dirname + "/../public/images/" + imageName, base64Data, "base64");
 
 
-/*
         await replaceColor({
             image: __dirname + "/../public/images/" + imageName,
             colors: {
@@ -42,36 +43,34 @@ router.post("/upload", async (req, res, next) => {
             .catch((err) => {
                 console.log(err);
             });
-*/
-
-        return res.send({
-            url:
-                req.protocol + "://" + req.get("host") + "/images/" + imageName,
-        });
 
 
+        /*   return res.send({
+               url:
+                   req.protocol + "://" + req.get("host") + "/images/" + imageName,
+           });
+       */
 
 
-        /*  await Jimp.read(
-              "https://www.goodfreephotos.com/albums/other-landscapes/mountain-peaks-clouds-and-landscape.jpg",
-              (err, overlay) => {
-                  Jimp.read( __dirname + "/../public/images/" + imageName
-                      , (err, image) => {
-                      image
-                          .composite(overlay, 0, 0, {
-                              mode: Jimp.BLEND_DESTINATION_OVER,
-                          })
-                          .write(
-                              __dirname + "/../public/images/" + imageName
-                          ); // save
+        await Jimp.read(
+            "https://www.goodfreephotos.com/albums/other-landscapes/mountain-peaks-clouds-and-landscape.jpg",
+            (err, overlay) => {
+                Jimp.read(__dirname + "/../public/images/" + imageName
+                    , (err, image) => {
+                        image
+                            .composite(overlay, 0, 0, {
+                                mode: Jimp.BLEND_DESTINATION_OVER,
+                            })
+                            .write(
+                                __dirname + "/../public/images/" + imageName
+                            ); // save
 
-                      return res.send({
-                          url:
-                              req.protocol + "://" + req.get("host") + "/images/" + imageName,
-                      });
-                  });
-              }
-          );*/
+                        return res.send({
+                            url: req.protocol + "://" + HOST + "/images/" + imageName,
+                        });
+                    });
+            }
+        );
     } catch (e) {
         next(e);
     }
