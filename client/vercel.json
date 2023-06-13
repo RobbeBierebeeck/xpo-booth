@@ -3,6 +3,10 @@
         {
             "source": "/image/:path*",
             "destination": "https://xpo.ibs.sh/image/:path*"
+        },
+        {
+            "source": "/(.*)",
+            "destination": "/index.html"
         }
     ]
 }
