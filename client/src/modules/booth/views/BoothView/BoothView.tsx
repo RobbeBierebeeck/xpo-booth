@@ -1,6 +1,7 @@
 import { Video } from '~/booth/components'
 import { useState } from 'react'
 import { ImagePreview } from '~/booth/components/ImagePreview'
+import { ImagePreviewInterface } from '~/booth/components/ImagePreviewInterface'
 import { StyledImagePreview, StyledSettings } from './BoothView.styles.tsx'
 import { useNavigate } from 'react-router-dom'
 import { BOOTH_PATHS } from '~/booth/booth.const.ts'
@@ -13,6 +14,9 @@ export const BoothView = () => {
 	const [sensitivity, setSensitivity] = useState<number>(40)
 	const [loading, setLoading] = useState<boolean>(false)
 	const navigate = useNavigate()
+
+	//backdrop state
+	const [backdrop, setBackdrop] = useState<number>(0)
 
 	const handleSettings = () => {
 		setSettings(!settings)
@@ -54,8 +58,12 @@ export const BoothView = () => {
 							onSave={() => {
 								handleTakePhoto()
 							}}
+							backdrop={backdrop}
 						/>
-
+						<ImagePreviewInterface 
+							backdrop={backdrop}
+							setBackdrop={setBackdrop}
+						/>
 						<StyledSettings onClick={handleSettings}>
 							<svg
 								xmlns="http://www.w3.org/2000/svg"

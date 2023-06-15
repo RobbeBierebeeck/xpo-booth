@@ -1,11 +1,10 @@
 import styled from 'styled-components'
 
 export const StyledImagePreview = styled.div`
-	position: fixed;
 	padding: 20px;
-	transform: translate(-50%, -50%);
-	top: 50%;
-	left: 50%;
+	top: 5vh;
+	left: 2vw;
+	height: 60vh;
 	z-index: 102;
 	background-color: #fff;
 	border-radius: 5px;
@@ -19,16 +18,38 @@ export const StyledImage = styled.img`
 export const ButtonsWrapper = styled.div`
 	display: flex;
 	justify-content: center;
-	margin-top: 20px;
+	margin-top: -50px;
 `
-export const StyledButton = styled.button<{ isPrimary?: boolean }>`
-	border: none;
-	border-radius: 5px;
-	padding: 10px 20px;
-	cursor: pointer;
-	background-color: ${({ isPrimary }) => (isPrimary ? '#000' : '#fff')};
-	color: ${({ isPrimary }) => (isPrimary ? '#fff' : '#000')};
-	font-size: 16px;
-	font-weight: 600;
-	margin-right: 10px;
-`
+export const StyledButton = styled.button<{ isPrimary?: boolean; disabled?: boolean }>`
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
+  background-color: ${({ isPrimary, disabled }) => {
+    if (disabled) return '#ccc';
+    return isPrimary ? '#EF865A' : '#fff';
+  }};
+  color: ${({ isPrimary, disabled }) => (disabled ? '#999' : isPrimary ? '#fff' : '#000')};
+  font-size: 16px;
+  font-weight: 600;
+  margin-right: 10px;
+  
+  /* Optional: Add more specific disabled styles */
+  opacity: ${({ disabled }) => (disabled ? 0.6 : 1)};
+  pointer-events: ${({ disabled }) => (disabled ? 'none' : 'auto')};
+  /* Additional disabled styles you may want to apply */
+`;
+
+export const StyledImagePreviewTitle = styled.div`
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  position: fixed;
+  top: 4vh;
+  left: 2vw;
+  z-index: 69;
+  font-family: 'Roboto', sans-serif;
+  color: #fff;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  font-size: 2em;
+`;

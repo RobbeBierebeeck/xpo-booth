@@ -1,29 +1,35 @@
 import { FC } from 'react'
 import {
-	ButtonsWrapper,
-	StyledButton,
-	StyledImage,
-	StyledImagePreview,
+  ButtonsWrapper,
+  StyledButton,
+  StyledImage,
+  StyledImagePreview,
+  StyledImagePreviewTitle,
+
 } from './ImagePreview.styles.tsx'
 import { ImagePreviewProps } from './ImagePreview.types.ts'
 
 export const ImagePreview: FC<ImagePreviewProps> = ({
-	image,
-	onRetake,
-	onSave,
+  image,
+  onRetake,
+  onSave,
+  backdrop,
 }) => {
-	return (
-		<StyledImagePreview>
-			<StyledImage
-				src={`data:image/jpeg;base64,${image}`}
-				alt="preview"
-			/>
-			<ButtonsWrapper>
-				<StyledButton onClick={onRetake}>Retake</StyledButton>
-				<StyledButton onClick={onSave} isPrimary={true}>
-					Save
-				</StyledButton>
-			</ButtonsWrapper>
-		</StyledImagePreview>
-	)
+  const isSaveButtonEnabled = backdrop > 0;
+
+  return (
+    <StyledImagePreview>
+		<StyledImagePreviewTitle>Choose a backdrop below</StyledImagePreviewTitle>
+      <StyledImage
+        src={`data:image/jpeg;base64,${image}`}
+        alt="preview"
+      />
+      <ButtonsWrapper>
+        <StyledButton onClick={onRetake}>Retake</StyledButton>
+        <StyledButton onClick={onSave} disabled={!isSaveButtonEnabled} isPrimary={true}>
+          Save
+        </StyledButton>
+      </ButtonsWrapper>
+    </StyledImagePreview>
+  )
 }
