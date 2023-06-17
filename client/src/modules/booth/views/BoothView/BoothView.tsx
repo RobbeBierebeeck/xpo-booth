@@ -87,7 +87,14 @@ export const BoothView = () => {
 							</svg>
 						</StyledSettings>
 						{settings ? (
-							<div>
+							<div
+								style={{
+									position: 'absolute',
+									top: '0',
+									left: '0',
+									zIndex: 1000,
+								}}
+							>
 								<p>Settings</p>
 								<input
 									type="text"

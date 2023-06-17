@@ -5,17 +5,30 @@ export const FinishedViewContainer = styled.div`
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	height: 100vh;
+	min-height: 100vh;
 `
 export const StyledImagePreview = styled.div`
 	display: flex;
 	flex-wrap: wrap;
 	align-items: center;
 	gap: 8rem;
+	@media (max-width: 1200px) {
+		margin-top: 2rem;
+		flex-direction: column;
+	}
 `
+export const StyledHeading = styled.h2`
+	font-size: 2rem;
+	font-weight: 600;
+	margin-bottom: 2rem;
+	text-align: center;
+	font-family: 'Roboto', sans-serif;
+`
+
 export const StyledImage = styled.img`
 	max-width: 40rem;
 	object-fit: contain;
+	width: 100%;
 `
 
 export const StyledButton = styled.button`
@@ -27,5 +40,5 @@ export const StyledButton = styled.button`
 	color: #fff;
 	font-size: 16px;
 	font-weight: 600;
-	margin-top: 2rem;
+	margin-top: 4rem;
 `

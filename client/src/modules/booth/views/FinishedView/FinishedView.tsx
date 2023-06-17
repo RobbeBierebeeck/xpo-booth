@@ -4,6 +4,7 @@ import QRCode from 'react-qr-code'
 import {
 	FinishedViewContainer,
 	StyledButton,
+	StyledHeading,
 	StyledImage,
 	StyledImagePreview,
 } from '~/booth/views/FinishedView/FinishedView.styles.tsx'
@@ -20,7 +21,12 @@ export const FinishedView: FC = () => {
 					{data && data.url && (
 						<>
 							<StyledImage src={data.url} alt="" />
-							<QRCode value={data.url} />
+							<div style={{ textAlign: 'center' }}>
+								<StyledHeading>
+									Scan the QR code to download your image!
+								</StyledHeading>
+								<QRCode value={data.url} />
+							</div>
 						</>
 					)}
 				</StyledImagePreview>
