@@ -8,7 +8,10 @@ export const Video: FC<VideoProps> = ({ onTakePhoto }) => {
 
 	const capture = useCallback(() => {
 		if (!webcamRef.current) return
-		const imageSrc = webcamRef.current.getScreenshot() as string
+		const imageSrc = webcamRef.current.getScreenshot({
+			width: 1080,
+			height: 1080,
+		}) as string
 		const base64 = imageSrc.split(',')[1]
 		onTakePhoto(base64)
 	}, [webcamRef, onTakePhoto])

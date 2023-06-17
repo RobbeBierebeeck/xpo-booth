@@ -32,6 +32,7 @@ export const BoothView = () => {
 			body: JSON.stringify({
 				color: hex,
 				deltaE: sensitivity,
+				overlay: backdrop,
 				image: {
 					filename: 'image',
 					contents: 'data:image/jpeg;base64,' + image,
@@ -60,7 +61,7 @@ export const BoothView = () => {
 							}}
 							backdrop={backdrop}
 						/>
-						<ImagePreviewInterface 
+						<ImagePreviewInterface
 							backdrop={backdrop}
 							setBackdrop={setBackdrop}
 						/>

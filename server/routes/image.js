@@ -45,15 +45,11 @@ router.post("/upload", async (req, res, next) => {
             });
 
 
-        /*   return res.send({
-               url:
-                   req.protocol + "://" + req.get("host") + "/images/" + imageName,
-           });
-       */
+
 
 
         await Jimp.read(
-            "https://www.goodfreephotos.com/albums/other-landscapes/mountain-peaks-clouds-and-landscape.jpg",
+            __dirname + "/../public/images/overlay/" + req.body.overlay + ".png",
             (err, overlay) => {
                 Jimp.read(__dirname + "/../public/images/" + imageName
                     , (err, image) => {
