@@ -25,3 +25,14 @@ export const StyledButton = styled.button`
 	background-image: radial-gradient(#fff 50%, transparent 52%),
 		radial-gradient(#fff 50%, transparent 52%);
 `
+export const StyledCountDown = styled.p`
+	position: fixed;
+	bottom: 5%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 100;
+	font-size: 5rem;
+	font-weight: 600;
+	color: #fff;
+	text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+`

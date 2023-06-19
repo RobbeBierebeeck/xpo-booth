@@ -1,11 +1,13 @@
-import { FC, useCallback, useRef } from 'react'
+import { FC, useCallback, useEffect, useRef, useState } from 'react'
 import Webcam from 'react-webcam'
 import { VideoProps } from './Video.types.ts'
-import { StyledButton, StyledWebcam } from './Video.styles.tsx'
+import { StyledButton, StyledCountDown, StyledWebcam } from './Video.styles.tsx'
 
 export const Video: FC<VideoProps> = ({ onTakePhoto }) => {
+	const [countDown, setCountDown] = useState<number>(5)
 	const webcamRef = useRef<Webcam>(null)
-
+	const [automatic, setAutomatic] = useState(false)
+	const [shutterClicked, setShutterClicked] = useState(false)
 	const capture = useCallback(() => {
 		if (!webcamRef.current) return
 		const imageSrc = webcamRef.current.getScreenshot({
@@ -14,7 +16,18 @@ export const Video: FC<VideoProps> = ({ onTakePhoto }) => {
 		}) as string
 		const base64 = imageSrc.split(',')[1]
 		onTakePhoto(base64)
+		setShutterClicked(false)
+		setAutomatic(false)
 	}, [webcamRef, onTakePhoto])
+
+	useEffect(() => {
+		if (automatic) {
+			const interval = setInterval(() => {
+				setCountDown((prev) => prev - 1)
+			}, 1000)
+			return () => clearInterval(interval)
+		}
+	}, [automatic])
 
 	return (
 		<>
@@ -23,7 +36,20 @@ export const Video: FC<VideoProps> = ({ onTakePhoto }) => {
 				screenshotFormat="image/jpeg"
 				ref={webcamRef}
 			/>
-			<StyledButton onClick={capture}></StyledButton>
+			<StyledButton
+				onClick={() => {
+					setCountDown(5)
+					setShutterClicked(true)
+					setAutomatic(!automatic)
+					setTimeout(() => {
+						capture()
+					}, 5000)
+				}}
+			>
+				{shutterClicked ? (
+					<StyledCountDown>{countDown}</StyledCountDown>
+				) : null}
+			</StyledButton>
 		</>
 	)
 }

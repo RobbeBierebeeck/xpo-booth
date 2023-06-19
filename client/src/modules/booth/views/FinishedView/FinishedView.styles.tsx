@@ -41,4 +41,5 @@ export const StyledButton = styled.button`
 	font-size: 16px;
 	font-weight: 600;
 	margin-top: 4rem;
+	margin-bottom: 4rem;
 `
