@@ -11,7 +11,7 @@ export const BoothView = () => {
 	const [image, setImage] = useState<string>('')
 	const [settings, setSettings] = useState<boolean>(false)
 	const [hex, setHex] = useState<string>('#4bd283')
-	const [sensitivity, setSensitivity] = useState<number>(30)
+	const [sensitivity, setSensitivity] = useState<number>(20)
 	const [loading, setLoading] = useState<boolean>(false)
 	const navigate = useNavigate()
 
