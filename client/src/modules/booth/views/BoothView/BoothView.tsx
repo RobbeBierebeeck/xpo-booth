@@ -10,8 +10,8 @@ import { Loader } from '~/shared/components'
 export const BoothView = () => {
 	const [image, setImage] = useState<string>('')
 	const [settings, setSettings] = useState<boolean>(false)
-	const [hex, setHex] = useState<string>('#3bb14b')
-	const [sensitivity, setSensitivity] = useState<number>(40)
+	const [hex, setHex] = useState<string>('#4bd283')
+	const [sensitivity, setSensitivity] = useState<number>(30)
 	const [loading, setLoading] = useState<boolean>(false)
 	const navigate = useNavigate()
 
